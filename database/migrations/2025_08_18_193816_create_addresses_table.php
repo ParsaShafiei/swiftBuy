@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->text('body');
-            $table->foreignId('parent_id')->nullable()->constrained('comments')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('commentable_id');
-            $table->string('commentable_type');
-            $table->tinyInteger('status')->default(0)->comment('0 =>unseen, 1 => seen, 2 => approved');
+            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('postal_code')->nullable();
+            $table->text('address')->nullable();
+            $table->string('no')->nullable();
+            $table->string('unit')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('addresses');
     }
 };

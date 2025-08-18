@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->text('body');
-            $table->foreignId('parent_id')->nullable()->constrained('comments')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('commentable_id');
-            $table->string('commentable_type');
-            $table->tinyInteger('status')->default(0)->comment('0 =>unseen, 1 => seen, 2 => approved');
+            $table->foreignId('copan_id')->constrained('copans')->onDelete('cascade')->onUpdate('cascade');
+            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('discount_status')->default(0)->comment('0 => unused, 1 =>used');
+            $table->timestamp('expired_at')->nullable();
+            $table->unsignedBigInteger('total_price');
+            $table->unsignedBigInteger('total_off_price');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('carts');
     }
 };

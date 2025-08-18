@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->text('body');
-            $table->foreignId('parent_id')->nullable()->constrained('comments')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('amount');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('commentable_id');
-            $table->string('commentable_type');
-            $table->tinyInteger('status')->default(0)->comment('0 =>unseen, 1 => seen, 2 => approved');
+            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('type')->default(0)->comment('0 => online, 1 =>offline');
+            $table->string('gateway')->nullable();
+            $table->string('transaction_id')->nullable();
+            $table->text('tracking_code')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('payments');
     }
 };
