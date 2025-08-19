@@ -51,6 +51,6 @@
 
         </tbody>
     </table>
-
+    {{ $productCategories->links() }}
 
 @endsection
