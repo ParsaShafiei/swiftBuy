@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Content\CommentController;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\MenuController;
 use App\Http\Controllers\Admin\Content\PageController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Market\BrandController;
 use App\Http\Controllers\Admin\Market\CopanController;
 use App\Http\Controllers\Admin\Market\DeliveryController;
@@ -27,6 +28,7 @@ Route::get('/', function () {
 require __DIR__ . '/auth.php';
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', DashboardController::class);
     Route::prefix('setting')->name('setting.')->group(function () {
         Route::resource('setting', SettingController::class);
     });
