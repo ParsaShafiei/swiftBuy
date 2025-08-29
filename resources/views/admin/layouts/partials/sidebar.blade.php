@@ -25,8 +25,8 @@
                     <i class="fas fa-angle-left angle"></i>
                 </section>
                 <section class="sidebar-dropdown">
-                    <a href="#">مقالات</a>
-                    <a href="#">پست ها</a>
+                    <a href="{{ route('admin.content.blog.index') }}">مقالات</a>
+                    <a href="{{ route('admin.content.faq.index') }}">سوالات متداول</a>
                     <a href="#">دوره ها</a>
                 </section>
             </section>
