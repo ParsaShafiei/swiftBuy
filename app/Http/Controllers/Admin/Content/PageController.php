@@ -12,7 +12,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        dd('index');
     }
 
     /**

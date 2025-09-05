@@ -17,6 +17,10 @@
                 <i class="fas fa-object-ungroup"></i>
                 <span>برند ها</span>
             </a>
+            <a href="{{ route('admin.content.page.index') }}" class="sidebar-link">
+                <i class="fas fa-object-ungroup"></i>
+                <span>صفحه ها</span>
+            </a>
 
             <section class="sidebar-group-link">
                 <section class="sidebar-dropdown-toggle">
